@@ -1,0 +1,81 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="row">
+        <div class="col-lg-9">
+		<div class="col-lg-4">
+		<div class="form-group">
+            <label for="videoname">Search Video</label>
+			 <input type="text" placeholder="Serch Video Name" name="videoname" (keyup)="applyFilter($event)"
+              class="form-control" id="searchname">
+			  </div>
+		</div>
+        </div>
+		<div class="col-lg-1">
+          <button style="margin-top: 20px;" class="btn btn-outline-primary" (click)="clear()"> Clear</button>
+        </div>
+        <div class="col-lg-2">
+          <button style="margin-top: 20px;" class="btn btn btn-sm btn-outline-primary" (click)="addVideo()"> Add
+            Video</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <table class="table table-striped" style="margin-top: 20px;">
+          <thead>
+            <tr>
+              <th class="hidden">Id</th>
+              <th>Video Title</th>
+              <th>Channel Name</th>
+			  <th>Description</th>
+              <th>Category</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let video of videos">
+              <td class="hidden">{{video.VideoId}}</td>
+              <td>{{video.VideoName}}</td>
+              <td>{{video.ChannelName}}</td>
+              <td>{{video.Description}}</td>
+			  <td>{{video.Category}}</td>
+              <td>
+                <button class="btn btn-danger" (click)="deleteVideo(video)"> Delete</button>
+                <button class="btn btn-danger" (click)="open(content,video)" style="margin-left: 20px;"> Preview</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Video Preview</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+		 <section class="panel panel-info">
+    
+    <div class="panel-body">
+      <youtube-player 
+        [videoId]="id"
+        (ready)="savePlayer($event)"
+        (change)="onStateChange($event)"
+        [playerVars]="playerVars"
+      >
+      </youtube-player>
+    </div>
+  </section>
+ 
+  </div>
+  <div class="modal-footer">
+    
+  </div>
+</ng-template>
+

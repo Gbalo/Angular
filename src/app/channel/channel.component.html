@@ -1,0 +1,49 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-lg-9">
+		<div class="col-lg-4">
+		<div class="form-group">
+            <label for="channelname">Search Channel</label>
+			 <input type="text" placeholder="Serch Channel Name" name="channelname" (keyup)="applyFilter($event)"
+              class="form-control" id="searchname">
+			  </div>
+		</div>
+        </div>
+		<div class="col-lg-1">
+          <button style="margin-top: 20px;" class="btn btn-outline-primary" (click)="clear()"> Clear</button>
+        </div>
+        <div class="col-lg-2">
+          <button style="margin-top: 20px;" class="btn btn-outline-primary" (click)="addChannel()"> Add Channel</button>
+        </div>
+      </div>
+      <div class="row">
+        <table class="table table-striped" style="margin-top: 20px;">
+          <thead>
+            <tr>
+              <th class="hidden">Id</th>
+              <th>Channel Name</th>
+              <th>Description</th>
+              <th>Category</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let channel of channels">
+              <td class="hidden">{{channel.ChannelId}}</td>
+              <td>{{channel.ChannelName}}</td>
+              <td>{{channel.Description}}</td>
+              <td>{{channel.Category}}</td>
+              <td>
+			  <!--<ui-switch  (click)="editChannel(channel)"></ui-switch> -->
+                <button class="btn btn-danger" (click)="deleteChannel(channel)"> Delete</button>
+                <button class="btn btn-danger" (click)="editChannel(channel)" style="margin-left: 20px;">
+                  Disabled</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

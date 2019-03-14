@@ -1,0 +1,31 @@
+<div class="jumbotron">
+
+  <div class="container">
+    <div class="row">
+
+      <div class="col-md-6 offset-md-3">
+        <h2 class="text-center">Add Channel</h2>
+        <form [formGroup]="channelForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="channelname">Channel Name:</label>
+            <input type="channelname" formControlName="ChannelName" placeholder="Channel Name" name="channelname"
+              class="form-control" id="channelname">
+          </div>
+
+          <div class="form-group">
+            <label for="description">Description:</label>
+            <input formControlName="Description" placeholder="Description" name="description" class="form-control"
+              id="description">
+          </div>
+
+          <div class="form-group">
+            <label for="category">Category:</label>
+            <input formControlName="Category" placeholder="Category" name="category" class="form-control" id="category">
+          </div>
+
+          <button class="btn btn btn-sm  btn-success" >Save</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
