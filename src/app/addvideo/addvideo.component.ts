@@ -36,8 +36,8 @@ export class AddvideoComponent implements OnInit {
 
   onChange(channel): void {
     this.videoForm.controls['ChannelId'].setValue(channel.target.value);
-    this.videoForm.controls['ChannelName'].setValue(channel.target.options[event.target.options.selectedIndex].text);
 	if(channel.target && channel.target.options){
+		this.videoForm.controls['ChannelName'].setValue(channel.target.options[channel.target.options.selectedIndex].text);
 	}
 
   }
