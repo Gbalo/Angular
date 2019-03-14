@@ -12,6 +12,7 @@ import {ChannelModel} from "../addchannel/channel.model";
 export class ChannelComponent implements OnInit {
 
   channels: ChannelModel[];
+  data : ChannelModel [];
 	filterData : ChannelModel[];
   constructor(private router: Router, private channelService: ChannelServiceService) { }
 
@@ -25,14 +26,13 @@ export class ChannelComponent implements OnInit {
   }
   
   clear(){
-	  
 	  this.channels = this.filterData;
   }
 	
 	applyFilter(event) {
 		var filterValue = event.target.value;
-		var data = this.channels.find(x=> x.ChannelName.indexOf(filterValue) >-1)
-		this.channels = data;
+		 this.data = this.channels.find(x=> x.ChannelName.indexOf(filterValue) >-1)
+		this.channels = this.data;
 		
 	}
   deleteChannel(channel: ChannelModel): void {

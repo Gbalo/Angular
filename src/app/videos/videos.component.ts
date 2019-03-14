@@ -21,8 +21,9 @@ export class VideosComponent implements OnInit {
   private player;
   private ytEvent;
 
-  videos: VideoModel[]
-  filterData : VideoModel[]
+  videos: VideoModel[];
+  data: VideoModel[];
+  filterData : VideoModel[];
   constructor(private router: Router, private videoService: VideoServiceService,private modalService: NgbModal) { }
   closeResult: string;
 	videourl : string;
@@ -53,11 +54,11 @@ export class VideosComponent implements OnInit {
     
 	applyFilter(event) {
 		var filterValue = event.target.value;
-		var data = this.videos.find(x=> x.VideoName.indexOf(filterValue) >-1)
-		this.videos = data;
+		this.data = this.videos.find(x=> x.VideoName.indexOf(filterValue) >-1)
+		this.videos = this.data;
 		
 	}
-   open(content, video) {
+   open(content, video:VideoModel) {
 	   this.id = video.VideoLink;
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
